@@ -152,7 +152,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-xs">© {currentYear} SocialHub. All rights reserved.</p>
 
-          {/* Social Icons with Lucide - Using proper lucide-react icons */}
+          {/* Social Icons */}
           <div className="flex gap-2">
             <a
               href="#"

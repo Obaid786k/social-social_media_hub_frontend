@@ -1,12 +1,21 @@
 import { Search } from "lucide-react"
 import { useState } from "react"
 
-export default function SearchBar({ onSearch, placeholder = "Search..." }) {
+export default function SearchBar({ onSearch, onEnter, placeholder = "Search..." }) {
   const [query, setQuery] = useState("")
 
   const handleChange = (e) => {
-    setQuery(e.target.value)
-    onSearch(e.target.value)
+    const value = e.target.value
+    setQuery(value)
+    if (typeof onSearch === "function") {
+      onSearch(value)
+    }
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && typeof onEnter === "function") {
+      onEnter(query)
+    }
   }
 
   return (
@@ -16,6 +25,7 @@ export default function SearchBar({ onSearch, placeholder = "Search..." }) {
         type="text"
         value={query}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         placeholder={placeholder}
         className="w-full pl-10 pr-4 py-2 rounded-lg bg-input border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent transition-colors"
       />

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Instagram, MessageSquare, Video, Users, Zap, Globe } from "lucide-react"
-import { useAuth } from "../hooks/useAuth"
+import { useAuth } from "../../hooks/useAuth"
 
 export default function HomePage() {
     const { isLoggedIn } = useAuth()
@@ -120,18 +120,9 @@ export default function HomePage() {
                                         </div>
 
                                         <div>
-                                            <h2 className="text-2xl font-black text-white mb-2 group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-cyan-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all">
-                                                {platform.name}
-                                            </h2>
-                                            <p className="text-purple-300 font-medium">{platform.description}</p>
+                                            <h3 className="text-2xl font-black text-white mb-2">{platform.name}</h3>
+                                            <p className="text-sm text-slate-300">{platform.description}</p>
                                         </div>
-
-                                        {isActive && (
-                                            <div className="flex items-center gap-2 text-cyan-400 font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                                                Explore
-                                                <span className="group-hover:translate-x-2 transition-transform">→</span>
-                                            </div>
-                                        )}
                                     </div>
                                 </div>
                             </Link>
@@ -139,25 +130,21 @@ export default function HomePage() {
                     })}
                 </div>
 
-                {/* Call to Action */}
-                <div className="text-center py-8 border-t border-purple-500/20">
-                    {isLoggedIn ? (
-                        <p className="text-purple-300 font-semibold text-lg">Start exploring content and connect with creators</p>
-                    ) : (
-                        <div className="flex gap-4 justify-center flex-wrap">
-                            <Link
-                                to="/login"
-                                className="px-8 py-3 rounded-lg bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold transition-all transform hover:scale-105 shadow-lg shadow-cyan-500/50"
-                            >
-                                Log In
-                            </Link>
-                            <Link
-                                to="/signup"
-                                className="px-8 py-3 rounded-lg border-2 border-purple-500 text-purple-300 font-bold hover:bg-purple-500/10 transition-all"
-                            >
-                                Sign Up
-                            </Link>
-                        </div>
+                {/* CTA Section */}
+                <div className="bg-linear-to-r from-purple-600/10 to-pink-600/10 border border-purple-500/20 rounded-2xl p-8 text-center">
+                    <h2 className="text-2xl font-black text-white mb-4">Ready to explore?</h2>
+                    <p className="text-purple-300 mb-6">
+                        {isLoggedIn
+                            ? "Start exploring content from your favorite platforms"
+                            : "Sign up to get started with SocialHub"}
+                    </p>
+                    {!isLoggedIn && (
+                        <Link
+                            to="/signup"
+                            className="inline-block px-8 py-3 rounded-lg bg-linear-to-r from-cyan-500 to-pink-500 hover:from-cyan-600 hover:to-pink-600 text-white font-bold transition-all transform hover:scale-105"
+                        >
+                            Get Started
+                        </Link>
                     )}
                 </div>
             </div>

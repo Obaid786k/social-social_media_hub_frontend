@@ -1,11 +1,10 @@
-
 import { useState, useEffect } from "react"
 import { ArrowLeft } from "lucide-react"
 import { Link } from "react-router-dom"
-import PostCard from "../../../components/PostCard"
-import SearchBar from "../../../components/SearchBar"
-import { twitterService } from "../services/twitterService"
-import { useAuth } from "../../../hooks/useAuth"
+import PostCard from "../common/PostCard"
+import SearchBar from "../common/SearchBar"
+import { socialService } from "../../services/socialService"
+import { useAuth } from "../../hooks/useAuth"
 
 export default function TwitterPage() {
   const [posts, setPosts] = useState([])
@@ -17,7 +16,7 @@ export default function TwitterPage() {
   useEffect(() => {
     const loadPosts = async () => {
       setLoading(true)
-      const data = await twitterService.getPosts(12, 0)
+      const data = await socialService.twitter.getPosts(12, 0)
       setPosts(data || [])
       setFilteredPosts(data || [])
       setLoading(false)
@@ -27,7 +26,7 @@ export default function TwitterPage() {
 
   const handleSearch = async (query) => {
     if (query.trim()) {
-      const results = await twitterService.searchPosts(query)
+      const results = await socialService.twitter.searchPosts(query)
       setFilteredPosts(results || [])
     } else {
       setFilteredPosts(posts)
@@ -36,7 +35,7 @@ export default function TwitterPage() {
 
   const loadMore = async () => {
     setLoading(true)
-    const newPosts = await twitterService.getPosts(12, posts.length)
+    const newPosts = await socialService.twitter.getPosts(12, posts.length)
     if (newPosts && newPosts.length > 0) {
       const updatedPosts = [...posts, ...newPosts]
       setPosts(updatedPosts)

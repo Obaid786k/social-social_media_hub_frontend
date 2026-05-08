@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Navbar from "./layouts/Navbar"
-import Footer from "./layouts/Footer"
-import HomePage from "./pages/HomePage"
-import LoginPage from "./pages/LoginPage"
-import SignupPage from "./pages/SignupPage"
-import InstagramPage from "./features/instagram/pages/InstagramPage"
-import TwitterPage from "./features/twitter/pages/TwitterPage"
-import SearchPage from "./pages/SearchPage"
-import ProfilePage from "./features/dashboard/pages/ProfilePage"
+import Navbar from "./components/common/Navbar"
+import Footer from "./components/common/Footer"
+import HomePage from "./components/pages/HomePage"
+import LoginPage from "./components/pages/LoginPage"
+import SignupPage from "./components/pages/SignupPage"
+import InstagramPage from "./components/pages/InstagramPage"
+import TwitterPage from "./components/pages/TwitterPage"
+import SearchPage from "./components/pages/SearchPage"
+import ProfilePage from "./components/pages/ProfilePage"
 
 export default function App() {
   return (
